@@ -14,6 +14,7 @@ class CarModel(models.Model):
     model = models.CharField(max_length=50, blank=False, null=False)
     year = models.IntegerField(blank=False, null=False)
     engine_type = models.CharField(max_length=40, blank=False, null=False)
+    fuel_type = models.CharField(max_length=64)
     description = models.TextField(max_length=4096, default="")
 
     def __str__(self):

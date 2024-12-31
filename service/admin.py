@@ -17,7 +17,7 @@ class CarAdmin(admin.ModelAdmin):
 
 
 class CarModelAdmin(admin.ModelAdmin):
-    list_display = ["make", "model", "year", "engine_type", "description"]
+    list_display = ["make", "model", "year", "engine_type", "fuel_type", "description"]
 
 
 class ServiceAdmin(admin.ModelAdmin):
