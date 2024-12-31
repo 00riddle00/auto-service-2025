@@ -10,8 +10,7 @@ from .models import Car, Order, Service
 def index(request):
     num_cars = Car.objects.all().count()
     num_services = Service.objects.all().count()
-    # TODO filter only completed orders
-    num_orders = Order.objects.all().count()
+    num_orders = Order.objects.filter(status__exact="C").count()
 
     context = {
         "num_cars": num_cars,
