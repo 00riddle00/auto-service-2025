@@ -11,7 +11,7 @@ class CarAdmin(admin.ModelAdmin):
         "client_name",
         "observations",
     ]
-    list_editable = ["client_name"]
+    list_editable = ["observations"]
     list_filter = ["client_name", "car_model__make", "car_model__model"]
     search_fields = ["license_plate_number", "vin_code"]
 
