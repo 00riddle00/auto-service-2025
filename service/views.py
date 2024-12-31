@@ -20,6 +20,11 @@ def index(request):
     return render(request, "service/index.html", context)
 
 
+def cars(request):
+    cars_ = Car.objects.all()
+    return render(request, "service/cars.html", {"cars": cars_})
+
+
 def create_service(request):
     if request.method == "POST":
         form = ServiceForm(request.POST)
