@@ -1,6 +1,6 @@
 from django.db.models import F
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from .forms import CarForm, CarModelForm, OrderForm, OrderLineForm, ServiceForm
@@ -23,6 +23,11 @@ def index(request):
 def cars(request):
     cars_ = Car.objects.all()
     return render(request, "service/cars.html", {"cars": cars_})
+
+
+def car(request, pk):
+    car_ = get_object_or_404(Car, pk=pk)
+    return render(request, "service/car_details.html", {"car": car_})
 
 
 def create_service(request):
