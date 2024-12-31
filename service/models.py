@@ -26,6 +26,7 @@ class Car(models.Model):
     license_plate_number = models.CharField(max_length=15, blank=False, null=False)
     vin_code = models.CharField(max_length=17, blank=False, null=False, unique=True)
     client_name = models.CharField(max_length=70, blank=False, null=False)
+    observations = models.TextField(max_length=2048, default="")
 
     def __str__(self):
         return f"{self.client_name} ({self.license_plate_number} {self.car_model.make})"
