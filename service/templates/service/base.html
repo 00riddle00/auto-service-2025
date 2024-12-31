@@ -1,0 +1,76 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'service/img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="icon" href="{% static 'service/img/favicon.ico' %}" type="image/x-icon" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'service/css/main.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Title (shown on the browser tab) -->
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'service/img/car_heaven_logo.png' %}" alt="Car Heaven Logo" width="50" height="50" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create_service' %}">Create Service</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create_car_model' %}">Create Car Model</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create_car' %}">Create Car</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create_order' %}">Create Order</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create_order_line' %}">Create Order Line</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container main-content" style="padding-top: 30px">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <footer>&copy; CodeAcademy</footer>
+    <!-- Custom JavaScript -->
+    <script src="{% static 'service/js/main.js' %}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

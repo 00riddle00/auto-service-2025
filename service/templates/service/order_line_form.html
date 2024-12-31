@@ -1,0 +1,14 @@
+{% extends "service/base.html" %}
+
+{% block title %}Order Line Form{% endblock title %}
+
+{% block content %}
+  <form action="{{ action_url }}" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">{{ form.order.as_field_group }}</div>
+    <div class="fieldWrapper">{{ form.service.as_field_group }}</div>
+    <div class="fieldWrapper">{{ form.quantity.as_field_group }}</div>
+    <input type="submit" value="Submit" />
+  </form>
+{% endblock content %}

@@ -1,0 +1,39 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table car {
+  id integer [primary key]
+  license_plate_no varchar
+  vin_code varchar
+  car_model_id integer [ref: > car_model.id] // many-to-one
+  client_name varchar
+}
+
+Table car_model {
+  id integer [primary key]
+  make varchar
+  model varchar
+  year integer
+  engine_type varchar
+}
+
+Table service {
+  id integer [primary key]
+  name varchar
+  price float
+}
+
+Table order {
+  id integer [primary key]
+  date datetime
+  car_id integer [ref: > car.id] // many-to-one
+  total_price float
+}
+
+Table order_line {
+  id integer [primary key]
+  order_id integer [ref: > order.id] // many-to-one
+  service_id integer [ref: > service.id] // many-to-one
+  price float
+  quantity integer
+}
