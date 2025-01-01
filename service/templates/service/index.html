@@ -11,4 +11,5 @@
     <li><strong>Services available: </strong><a href="{% url 'services' %}">{{ num_services }}</a></li>
     <li><strong>Orders completed: </strong><a href="{% url 'orders' %}">{{ num_orders }}</a></li>
   </ul>
+  <div class="container" style="display: inline-block; width: 75%">{{ bar_chart|safe }}</div>
 {% endblock content %}

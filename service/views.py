@@ -1,3 +1,6 @@
+import pandas as pd
+import plotly.express as px
+import plotly.offline as po
 from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -13,10 +16,28 @@ def index(request):
     num_services = Service.objects.all().count()
     num_orders = Order.objects.filter(status__exact="C").count()
 
+    df = pd.DataFrame(
+        {
+            "items": ["Cars", "Services", "Orders"],
+            "count": [num_cars, num_services, num_orders],
+        }
+    )
+    fig = px.bar(
+        df,
+        x="items",
+        y="count",
+        color_discrete_sequence=["#386b58"],
+        title="Overview:",
+    )
+    fig.update_layout(xaxis_title=None, yaxis_title=None)
+    fig.update_yaxes(dtick=1, ticks="outside", tickwidth=2, tickformat=",d")
+    bar_chart = po.plot(fig, output_type="div")
+
     context = {
         "num_cars": num_cars,
         "num_services": num_services,
         "num_orders": num_orders,
+        "bar_chart": bar_chart,
     }
     return render(request, "service/index.html", context)
 
