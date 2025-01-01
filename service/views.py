@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import plotly.offline as po
+from django.core.paginator import Paginator
 from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -43,13 +44,15 @@ def index(request):
 
 
 def cars(request):
-    cars_ = Car.objects.all()
-    return render(request, "service/cars.html", {"cars": cars_})
+    paginator = Paginator(Car.objects.all().order_by("id"), per_page=4)
+    page_number = request.GET.get("page")
+    paged_cars = paginator.get_page(page_number)
+    return render(request, "service/cars.html", context={"cars": paged_cars})
 
 
 def car(request, pk):
     car_ = get_object_or_404(Car, pk=pk)
-    return render(request, "service/car_details.html", {"car": car_})
+    return render(request, "service/car_details.html", context={"car": car_})
 
 
 class ServiceListView(generic.ListView):

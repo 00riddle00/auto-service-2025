@@ -4,10 +4,33 @@
 
 {% block content %}
   <h2>Cars</h2>
-  <h5>The list of cars in our garage:</h5>
-  <ul>
-    {% for car in cars %}
-      <li><a href="{% url 'car_details' car.id %}">{{ car.car_model }} by {{ car.client_name }}</a></li>
-    {% endfor %}
-  </ul>
+  <h5>The list of cars registered in our auto service:</h5>
+  {% if cars %}
+    <ul>
+      {% for car in cars %}
+        <li><a href="{% url 'car_details' car.id %}">{{ car.car_model }} by {{ car.client_name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no cars at the moment.</p>
+  {% endif %}
+  <div class="container">
+    <nav aria-label="...">
+      {% if cars.has_other_pages %}
+        <ul class="pagination pagination-sm justify-content-center">
+          {% for i in cars.paginator.page_range %}
+            {% if cars.number == i %}
+              <li class="page-item active">
+                <a class="page-link">{{ i }}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+  </div>
 {% endblock content %}
