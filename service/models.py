@@ -61,7 +61,9 @@ class Order(models.Model):
 
 
 class OrderLine(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.RESTRICT, blank=False, null=False)
+    order = models.ForeignKey(
+        Order, on_delete=models.RESTRICT, blank=False, null=False, related_name="lines"
+    )
     service = models.ForeignKey(
         Service, on_delete=models.RESTRICT, blank=False, null=False
     )
