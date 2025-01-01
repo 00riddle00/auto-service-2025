@@ -5,8 +5,13 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("cars/", views.cars, name="cars"),
-    path("cars/<int:pk>", views.car, name="car_details"),
+    path("cars/<int:pk>/", views.car, name="car_details"),
     path("services/", views.ServiceListView.as_view(), name="services"),
+    path(
+        "services/<int:pk>/",
+        views.ServiceDetailView.as_view(),
+        name="service_details",
+    ),
     path("create_service/", views.create_service, name="create_service"),
     path("create_car_model/", views.create_car_model, name="create_car_model"),
     path("create_car/", views.create_car, name="create_car"),
