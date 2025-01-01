@@ -36,7 +36,9 @@ class Car(models.Model):
 
 
 class Order(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.RESTRICT, blank=False, null=False)
+    car = models.ForeignKey(
+        Car, on_delete=models.RESTRICT, blank=False, null=False, related_name="orders"
+    )
     date = models.DateTimeField(blank=False, null=False, auto_now_add=True)
 
     NEW = "N"
