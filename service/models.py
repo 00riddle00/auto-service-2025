@@ -38,7 +38,6 @@ class Car(models.Model):
 class Order(models.Model):
     car = models.ForeignKey(Car, on_delete=models.RESTRICT, blank=False, null=False)
     date = models.DateTimeField(blank=False, null=False, auto_now_add=True)
-    total_price = models.FloatField(blank=True, null=True, default=0)
 
     NEW = "N"
     DECLINED = "D"
@@ -58,6 +57,14 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.car.license_plate_number} ({self.date} {self.total_price})"
+
+    @property
+    def total_price(self):
+        order_lines = OrderLine.objects.filter(order=self.id)
+        total_price = 0
+        for line in order_lines:
+            total_price += line.price * line.quantity
+        return total_price
 
 
 class OrderLine(models.Model):

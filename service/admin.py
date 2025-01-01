@@ -34,7 +34,7 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ["id"]
     inlines = [OrderLineInline]
     list_display = ["car", "date", "total_price", "status"]
-    list_editable = ["total_price", "status"]
+    list_editable = ["status"]
 
 
 admin.site.register(Car, CarAdmin)
