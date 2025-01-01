@@ -57,8 +57,10 @@ def car(request, pk):
 
 class ServiceListView(generic.ListView):
     model = Service
+    paginate_by = 4
     context_object_name = "services"
     template_name = "service/services.html"
+    ordering = ["id"]
 
 
 class ServiceDetailView(generic.DetailView):
@@ -69,8 +71,10 @@ class ServiceDetailView(generic.DetailView):
 
 class OrderListView(generic.ListView):
     model = Order
+    paginate_by = 4
     context_object_name = "orders"
     template_name = "service/orders.html"
+    ordering = ["id"]
 
 
 class OrderDetailView(generic.DetailView):
