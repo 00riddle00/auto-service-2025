@@ -1,14 +1,14 @@
 {% extends "service/base.html" %}
 
-{% block title %}Car Heaven{% endblock title %}
+{% block title %}Car Heaven{% endblock %}
 
 {% block content %}
   <h3>Welcome to <strong>Car Heaven</strong>!</h3>
   <p>Grant your car a <strong>two-way</strong> ticket to heaven!</p>
   <p>Currently, we have:</p>
   <ul>
-    <li><strong>Cars in our garage: </strong><a href="{% url 'cars' %}">{{ num_cars }}</a>
-    <li><strong>Services available: </strong><a href="{% url 'services' %}">{{ num_services }}</a>
-    <li><strong>Orders completed: </strong><a href="#">{{ num_orders }}</a>
+    <li><strong>Cars in our garage: </strong><a href="{% url 'cars' %}">{{ num_cars }}</a></li>
+    <li><strong>Services available: </strong><a href="{% url 'services' %}">{{ num_services }}</a></li>
+    <li><strong>Orders completed: </strong><a href="{% url 'orders' %}">{{ num_orders }}</a></li>
   </ul>
 {% endblock content %}

@@ -43,6 +43,12 @@ class ServiceDetailView(generic.DetailView):
     template_name = "service/service_details.html"
 
 
+class OrderListView(generic.ListView):
+    model = Order
+    context_object_name = "orders"
+    template_name = "service/orders.html"
+
+
 def create_service(request):
     if request.method == "POST":
         form = ServiceForm(request.POST)
