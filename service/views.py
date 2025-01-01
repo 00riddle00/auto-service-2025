@@ -2,6 +2,7 @@ from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
 
 from .forms import CarForm, CarModelForm, OrderForm, OrderLineForm, ServiceForm
 from .models import Car, Order, Service
@@ -28,6 +29,12 @@ def cars(request):
 def car(request, pk):
     car_ = get_object_or_404(Car, pk=pk)
     return render(request, "service/car_details.html", {"car": car_})
+
+
+class ServiceListView(generic.ListView):
+    model = Service
+    context_object_name = "services"
+    template_name = "service/services.html"
 
 
 def create_service(request):
