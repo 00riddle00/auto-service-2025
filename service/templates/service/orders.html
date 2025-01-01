@@ -12,18 +12,18 @@
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <p class="card-text">
-                <a href="#">
+                <a href="{% url 'order_details' order.id %}">
                   {{ order.car.car_model.make }} {{ order.car.car_model.model }} ({{ order.car.car_model.year }}),
                   {{ order.total_price }} €
                 </a>
                 <br />
-                <a href="#">ID: {{ order.id }}</a>
+                <a href="{% url 'order_details' order.id %}">ID: {{ order.id }}</a>
               </p>
               <h6 class="card-subtitle mb-2 text-muted"></h6>
               <h6 class="card-subtitle mb-2 text-muted">{{ order.car.client_name }}</h6>
               <h6 class="card-subtitle mb-2 text-muted"></h6>
               <br />
-              <h6 class="card-subtitle mb-2 text-muted">{{ order.car.license_plate_no }}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{ order.car.license_plate_number }}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{ order.car.vin_code }}</h6>
               <h6 class="card-subtitle mb-2 text-muted">
                 {{ order.car.car_model.engine_type }}, {{ order.car.car_model.fuel_type }}
