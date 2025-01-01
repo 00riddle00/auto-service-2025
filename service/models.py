@@ -60,10 +60,9 @@ class Order(models.Model):
 
     @property
     def total_price(self):
-        order_lines = OrderLine.objects.filter(order=self.id)
         total_price = 0
-        for line in order_lines:
-            total_price += line.price * line.quantity
+        for line in self.lines.all():
+            total_price += line.price
         return total_price
 
 
@@ -74,8 +73,11 @@ class OrderLine(models.Model):
     service = models.ForeignKey(
         Service, on_delete=models.RESTRICT, blank=False, null=False
     )
-    price = models.FloatField(blank=False, null=False)
     quantity = models.IntegerField(default=1, blank=False, null=False)
 
     def __str__(self):
         return f"{self.service.name} ({self.quantity})"
+
+    @property
+    def price(self):
+        return self.service.price * self.quantity
