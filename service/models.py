@@ -66,7 +66,7 @@ class OrderLine(models.Model):
         Service, on_delete=models.RESTRICT, blank=False, null=False
     )
     price = models.FloatField(blank=False, null=False)
-    quantity = models.IntegerField(blank=False, null=False)
+    quantity = models.IntegerField(default=1, blank=False, null=False)
 
     def __str__(self):
         return f"{self.service.name} ({self.quantity})"
